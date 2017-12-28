@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Hello</title>
+	</head>
+	<body>
+		<div id="message-box">
+		</div>
+		<div style="background-color:red; width:50px; height:50px; position:absolute;" id="player">
+		<button id="startGame">Start New Game</button>
+		</div>
+		<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+		<script>
+			var socket = io.connect('localhost:3000');
+				document.body.onkeydown = function(e){
+				socket.emit('keyPress', e.keyCode);};
+				
+			socket.on('msg', function (data) {
+				//document.getElementById("message-box").innerHTML += "<p>" + data + "</p>";
+				window.location.href = "/" + data;
+			});
+			document.getElementById("startGame").onclick = function(){socket.emit('NewGame',"I want to start a gaem");};
+		</script>
+	</body>
+</html>
