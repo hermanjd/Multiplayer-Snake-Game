@@ -17,3 +17,12 @@ app.get('/', function(req, res) {
 server.listen(5000, function(){
   console.log('starting the fuccen server on port 50000000000');
 }
+
+
+stdin.addListener("data", function(d) {
+	var message = d.toString().trim();
+	if(message == "startgame"){
+		newGame();
+		console.log("Game Server Started");
+	}
+});
