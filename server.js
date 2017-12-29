@@ -14,6 +14,6 @@ app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-server.listen(5000, function()){
+server.listen(5000, function(){
   console.log('starting the fuccen server on port 50000000000');
 }
