@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			body{
+				margin:0;
+				padding:0;
+				display:flex;
+				height: 100vh;
+				align-items: center;
+				justify-content: center;
+			}
+			#gameWindow{
+				border-style: solid;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas width="400" height="400" id="gameWindow">
+		<script>
+			var ctx = document.getElementById("gameWindow").getContext("2d");
+			var shitpommes = [20];
+			draw();
+			function draw(){
+				var x = 0;
+				var y = 0;
+				for(var i = 1; i <= 256;i++){
+					if(checkArray(shitpommes, i)){
+						drawRect(x,y,"#ff0000");
+					}else{
+						drawRect(x,y,"#F3F3F3");
+					}
+					
+					x += 25;
+					if(i%16 == 0){
+						x = 0;
+						y += 25;
+					}
+				}
+			}
+			function checkArray(array, kuk){
+				for(var i = 0; i < array.length; i++){
+					if(array[i] == kuk){
+						return true;
+					}
+				}
+				return false;
+			}
+			function drawRect(x,y,c){
+				ctx.beginPath();
+				ctx.rect(x,y,25,25);
+				ctx.fillStyle = c;
+				ctx.fill();
+			}
+			
+			document.body.addEventListener('keydown', function (e) {
+				if(68 == e.keyCode){
+					shitpommes[0] += 1;
+				}
+				if(65 == e.keyCode){
+					shitpommes[0] -= 1;
+				}
+				if(83 == e.keyCode){
+					shitpommes[0] += 16;
+				}
+				if(87 == e.keyCode){
+					shitpommes[0] -= 16;
+				}
+				draw();
+			});
+		</script>
+	</body>
+</html>
